@@ -1,6 +1,6 @@
 import { Col, FormControl, FormSelect, InputGroup } from "react-bootstrap"
 import { IoCalendarOutline } from "react-icons/io5"
-import { Form, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 export default function Profile() {
     return (
         <div id="wd-profile-screen">
