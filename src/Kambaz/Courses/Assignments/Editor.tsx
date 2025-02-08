@@ -1,7 +1,6 @@
-import { Button, Card, Col, Form, FormControl, FormGroup, FormLabel, FormSelect, InputGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Form, FormControl, FormGroup, FormSelect, InputGroup, Row } from "react-bootstrap";
 import "./../../styles.css";
 import { IoCalendarOutline } from "react-icons/io5";
-import { FaPlus } from "react-icons/fa";
 
 export default function AssignmentEditor() {
     return (
