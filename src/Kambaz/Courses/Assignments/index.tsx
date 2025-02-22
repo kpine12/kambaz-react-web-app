@@ -4,13 +4,35 @@ import { ListGroup } from "react-bootstrap";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import ModuleControlButtons from "../Modules/ModuleControlButtons";
 import { LuNotebookPen } from "react-icons/lu";
+import * as db from "../../Database";
+import { useParams } from "react-router-dom";
 
 export default function Assignments() {
+    const { cid } = useParams();
+    const assignments = db.assignments;
+
     return (
         <div id="wd-assignments">
             <AssignmentControls/><br />
             <ListGroup className="rounded-0" id="wd-assignment-list">
-                <ListGroup.Item className="wd-assignment p-0 mb-5 fs-5 border-gray">
+                { assignments.filter((assignment : any) => assignment.course === cid)
+                    .map((assignment: any) => (
+                        <ListGroup.Item className="wd-assignment p-0 mb-5 fs-5 border-gray">
+                            <div className="wd-title p-3 ps-2 bg-secondary">
+                                <BsGripVertical className="me-2 fs-3"/> ASSIGNMENTS <ModuleControlButtons/>
+                                    <ListGroup.Item className="wd-lesson p-3 ps-1">
+                                        <BsGripVertical className="me-2 fs-3"/>
+                                        <LuNotebookPen className="me-2 fs-3"/>
+                                        <a href={`#/Kambaz/Courses/${ cid }/Assignments/${assignment._id}`} className="wd-assignment-link">
+                                            { assignment.title }
+                                        </a><LessonControlButtons/>
+                                        <p> Multiple  Modules | Not available until  {assignment.availableDate} |<br/>
+                                        Due {assignment.dueDate} | {assignment.points}pts </p>
+                                    </ListGroup.Item>
+                            </div>
+                        </ListGroup.Item>
+                    ))}
+                {/* <ListGroup.Item className="wd-assignment p-0 mb-5 fs-5 border-gray">
                 <div className="wd-title p-3 ps-2 bg-secondary">
                     <BsGripVertical className="me-2 fs-3"/> ASSIGNMENTS <ModuleControlButtons/></div>
                 <ListGroup className="wd-lessons rounded-0">
@@ -42,7 +64,7 @@ export default function Assignments() {
                         Due May 13 at 11:59 | 100pts</p>
                     </ListGroup.Item>
                 </ListGroup>
-                </ListGroup.Item>
+                </ListGroup.Item> */}
             </ListGroup>
         </div>
     )
