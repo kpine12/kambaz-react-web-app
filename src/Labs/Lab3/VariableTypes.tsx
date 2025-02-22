@@ -1,5 +1,3 @@
-import { number } from "zod";
-
 export default function VariableTypes() {
     let numberVariable = 123;
     let floatingPointNumber = 234.345;
